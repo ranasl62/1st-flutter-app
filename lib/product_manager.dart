@@ -29,8 +29,10 @@ class _ProductManagerState extends State<ProductManager> {
   Widget build(BuildContext context) {
     return Column(
       children: [
-        Container(margin: EdgeInsets.all(10.0), child: ProductControl(_addProduct)),
-        Product(_products)
+        Container(
+            margin: EdgeInsets.all(10.0), child: ProductControl(_addProduct)),
+        // Container(height: 450.0, child: Product(_products)),
+        Expanded(child: Product(_products)),
       ],
     );
   }
