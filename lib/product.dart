@@ -1,9 +1,8 @@
 import 'package:flutter/material.dart';
 
 class Product extends StatelessWidget {
-
   final List<String> products;
-  Product(this.products);
+  Product([this.products = const []]); //optional arguments mention []
 
   @override
   Widget build(BuildContext context) {
@@ -12,7 +11,7 @@ class Product extends StatelessWidget {
           .map((element) => Card(
                 child: Column(
                   children: <Widget>[
-                    // Image.asset('assets/images/food.jpg'),
+                    Image.asset('assets/images/food.jpg'),
                     Text(element)
                   ],
                 ),

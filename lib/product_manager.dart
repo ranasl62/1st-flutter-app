@@ -3,7 +3,7 @@ import 'package:flutter/material.dart';
 
 class ProductManager extends StatefulWidget {
   String startingProduct;
-  ProductManager(this.startingProduct);
+  ProductManager({this.startingProduct='Default Value'});
   @override
   State<StatefulWidget> createState() {
     return _ProductManagerState();
