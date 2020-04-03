@@ -2,31 +2,33 @@ import 'package:flutter/material.dart';
 import 'home.dart';
 
 class ProductPage extends StatelessWidget {
+  final String title;
+  final String imageUrl;
+  ProductPage({this.title, this.imageUrl});
   @override
   Widget build(BuildContext context) {
     // print(widget.);
     return Scaffold(
       appBar: AppBar(
-        title: Text('Product Details'),
+        title: Text(title),
       ),
       body: Column(
         crossAxisAlignment: CrossAxisAlignment.center,
         children: <Widget>[
-          Image.asset('assets/images/food.jpg'),
+          Image.asset(imageUrl),
           Container(
             padding: EdgeInsets.all(10.0),
-            child: Text('Details!'),
+            child: Text(title),
           ),
           Container(
               padding: EdgeInsets.all(10.0),
               child: RaisedButton(
                 color: Theme.of(context).accentColor,
-                child: Text('Back'),
+                child: Text('Delete'),
                 onPressed: () {
-                  Navigator.pop(context);
+                  Navigator.pop(context, true);
                 },
-              )
-              )
+              ))
         ],
       ),
     );
