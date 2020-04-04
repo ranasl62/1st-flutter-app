@@ -11,10 +11,11 @@ class ProductCreatePage extends StatelessWidget {
             context: context,
             builder: (BuildContext context) {
               return Center(
-                child: Text('This is a Modal'),
+                child: Text('This is a modal'),
               );
             });
       },
+      //test
     ));
   }
 }
