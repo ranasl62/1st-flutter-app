@@ -1,4 +1,3 @@
-import 'package:first_app/pages/auth.dart';
 import 'package:first_app/pages/products_admin.dart';
 import 'package:first_app/pages/products.dart';
 import 'package:first_app/pages/product.dart';
@@ -11,25 +10,58 @@ void main() {
   runApp(MyApp());
 }
 
-class MyApp extends StatelessWidget {
+class MyApp extends StatefulWidget {
+  @override
+  State<StatefulWidget> createState() {
+    return _MyAppState();
+  }
+}
+
+class _MyAppState extends State<MyApp> {
+
+  List<Map<String, String>> _products = [];
+
+  @override
+  void initState() {
+    
+    super.initState();
+  }
+  void _addProduct(Map<String, String> product) {
+    setState(() {
+      _products.add(product);
+    });
+  }
+
+  _deleteProduct(int index) {
+    if (index < _products.length && index >= 0) {
+      setState(() {
+        _products.removeAt(index);
+      });
+    }
+  }
+
   _routes() {
-    return {
-      '/': (BuildContext context) => ProductsPage(),
+    return <String, WidgetBuilder> {
+      '/': (BuildContext context) => ProductsPage(
+            products: _products,
+            addProduct: _addProduct,
+            deleteProduct: _deleteProduct,
+          ),
       'admin': (BuildContext context) => ProductsAdminPage(),
     };
   }
 
-  _onGenerateRoutes(RouteSettings settings) {
+  MaterialPageRoute<bool> _onGenerateRoutes(RouteSettings settings) {
+
     final List<String> pathElements = settings.name.split('/');
-    if (pathElements[0] != '') {
-      return null;
-    }
-    if (pathElements[1] == 'product') {
-      final int index = int.parse(pathElements[2]);
-      return MaterialPageRoute(
+      print(pathElements);
+    if (pathElements[0] == 'product') {
+      final int index = int.parse(pathElements[1]);
+
+      return MaterialPageRoute<bool>(
           builder: (BuildContext context) => ProductPage(
-                title: products[index]['title'],
-                imageUrl: products[index]['imageUrl'],
+                title: _products[index]['title'],
+                imageUrl: _products[index]['imageUrl'],
               ));
     }
     return null;
@@ -44,7 +76,7 @@ class MyApp extends StatelessWidget {
         accentColor: Colors.deepPurple,
         brightness: Brightness.light,
       ),
-      home: AuthPage(),
+      // home: AuthPage(),
       routes: _routes(),
       onGenerateRoute: _onGenerateRoutes,
     );
