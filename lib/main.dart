@@ -18,14 +18,13 @@ class MyApp extends StatefulWidget {
 }
 
 class _MyAppState extends State<MyApp> {
-
   List<Map<String, String>> _products = [];
 
   @override
   void initState() {
-    
     super.initState();
   }
+
   void _addProduct(Map<String, String> product) {
     setState(() {
       _products.add(product);
@@ -41,7 +40,7 @@ class _MyAppState extends State<MyApp> {
   }
 
   _routes() {
-    return <String, WidgetBuilder> {
+    return <String, WidgetBuilder>{
       '/': (BuildContext context) => ProductsPage(
             products: _products,
             addProduct: _addProduct,
@@ -51,10 +50,9 @@ class _MyAppState extends State<MyApp> {
     };
   }
 
-  MaterialPageRoute<bool> _onGenerateRoutes(RouteSettings settings) {
-
+  MaterialPageRoute<dynamic> _onGenerateRoutes(RouteSettings settings) {
     final List<String> pathElements = settings.name.split('/');
-      print(pathElements);
+    print(pathElements);
     if (pathElements[0] == 'product') {
       final int index = int.parse(pathElements[1]);
 
@@ -65,6 +63,15 @@ class _MyAppState extends State<MyApp> {
               ));
     }
     return null;
+  }
+
+  MaterialPageRoute<dynamic> _onUnknownRoute(RouteSettings settings) {
+    return MaterialPageRoute(
+        builder: (BuildContext context) => ProductsPage(
+              products: _products,
+              addProduct: _addProduct,
+              deleteProduct: _deleteProduct,
+            ));
   }
 
   @override
@@ -79,6 +86,7 @@ class _MyAppState extends State<MyApp> {
       // home: AuthPage(),
       routes: _routes(),
       onGenerateRoute: _onGenerateRoutes,
+      onUnknownRoute: _onUnknownRoute,
     );
   }
 }
