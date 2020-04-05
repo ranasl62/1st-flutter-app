@@ -2,7 +2,6 @@ import 'package:first_app/pages/products_admin.dart';
 import 'package:first_app/pages/products.dart';
 import 'package:first_app/pages/product.dart';
 import 'package:flutter/material.dart';
-// import 'package:flutter/rendering.dart';
 
 void main() {
   // debugPaintSizeEnabled = true;
@@ -18,15 +17,16 @@ class MyApp extends StatefulWidget {
 }
 
 class _MyAppState extends State<MyApp> {
-  List<Map<String, String>> _products = [];
+  List<Map<String, dynamic>> _products = [];
 
   @override
   void initState() {
     super.initState();
   }
 
-  void _addProduct(Map<String, String> product) {
+  void _addProduct(Map<String, dynamic> product) {
     setState(() {
+      print(product);
       _products.add(product);
     });
   }
@@ -41,12 +41,11 @@ class _MyAppState extends State<MyApp> {
 
   _routes() {
     return <String, WidgetBuilder>{
-      '/': (BuildContext context) => ProductsPage(
-            products: _products,
+      '/': (BuildContext context) => ProductsPage(products: _products),
+      'admin': (BuildContext context) => ProductsAdminPage(
             addProduct: _addProduct,
             deleteProduct: _deleteProduct,
           ),
-      'admin': (BuildContext context) => ProductsAdminPage(),
     };
   }
 
@@ -59,7 +58,9 @@ class _MyAppState extends State<MyApp> {
       return MaterialPageRoute<bool>(
           builder: (BuildContext context) => ProductPage(
                 title: _products[index]['title'],
-                imageUrl: _products[index]['imageUrl'],
+                imageUrl: _products[index]['image'],
+                price: _products[index]['price'],
+                description: _products[index]['description'],
               ));
     }
     return null;
@@ -67,11 +68,7 @@ class _MyAppState extends State<MyApp> {
 
   MaterialPageRoute<dynamic> _onUnknownRoute(RouteSettings settings) {
     return MaterialPageRoute(
-        builder: (BuildContext context) => ProductsPage(
-              products: _products,
-              addProduct: _addProduct,
-              deleteProduct: _deleteProduct,
-            ));
+        builder: (BuildContext context) => ProductsPage(products: _products));
   }
 
   @override
