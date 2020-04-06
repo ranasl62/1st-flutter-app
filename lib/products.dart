@@ -9,8 +9,53 @@ class Products extends StatelessWidget {
       child: Column(
         children: <Widget>[
           Image.asset(products[index]['image']),
-          Text(products[index]['title']),
-          Text('price: ' + products[index]['price'].toString()),
+          Container(
+              margin:
+                  EdgeInsets.only(bottom: 10.0, top: 10.0), //all() another one
+              // padding: EdgeInsets.all(5.0),
+              // color: Colors.red,
+              child: Row(
+                mainAxisAlignment: MainAxisAlignment.center,
+                children: <Widget>[
+                  Text(
+                    products[index]['title'],
+                    style: TextStyle(
+                      fontSize: 26.0,
+                      fontWeight: FontWeight.bold,
+                      fontFamily: 'Oswald',
+                    ),
+                  ),
+                  // SizedBox(
+                  //   width: 0.0,
+                  // ),
+                  Container(
+                    padding:
+                        EdgeInsets.symmetric(horizontal: 6.0, vertical: 2.5),
+                    decoration: BoxDecoration(
+                        color: Theme.of(context).accentColor,
+                        borderRadius: BorderRadius.circular(20.0)),
+                    child: Text(
+                      '\$ ' + products[index]['price'].toString(),
+                      style: TextStyle(color: Colors.white),
+                    ),
+                  )
+                ],
+              )),
+          // SizedBox(
+          //   height: 10.0,
+          // ),
+          Container(
+            padding: EdgeInsets.symmetric(horizontal: 6.0, vertical: 2.5),
+            decoration: BoxDecoration(
+              border: Border.all(
+                color: Theme.of(context).accentColor,
+                width: 1.0,
+              ),
+              borderRadius: BorderRadius.circular(6.0),
+            ),
+            child:
+                Text('Bashundora City Complex, Panthopath, Dhanmondi, Dhaka'),
+          ),
           ButtonBar(
             alignment: MainAxisAlignment.center,
             children: <Widget>[

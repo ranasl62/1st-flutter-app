@@ -42,7 +42,7 @@ class _MyAppState extends State<MyApp> {
 
   _routes() {
     return <String, WidgetBuilder>{
-      // '/': (BuildContext context) => ProductsPage(products: _products),
+      '/': (BuildContext context) => ProductsPage(products: _products),
       'admin': (BuildContext context) => ProductsAdminPage(
             addProduct: _addProduct,
             deleteProduct: _deleteProduct,
@@ -81,7 +81,7 @@ class _MyAppState extends State<MyApp> {
         accentColor: Colors.deepPurple,
         brightness: Brightness.light,
       ),
-      home: AuthPage(),
+      // home: AuthPage(),
       routes: _routes(),
       onGenerateRoute: _onGenerateRoutes,
       onUnknownRoute: _onUnknownRoute,
