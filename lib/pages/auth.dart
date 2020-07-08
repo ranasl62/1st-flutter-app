@@ -18,17 +18,24 @@ class _AuthPageState extends State<AuthPage> {
       appBar: AppBar(
         title: Text('Login'),
       ),
-      body: Column(
-        crossAxisAlignment: CrossAxisAlignment.center,
-        mainAxisAlignment: MainAxisAlignment.center,
-        children: <Widget>[
-          Container(
-            margin: EdgeInsets.all(15.00),
-            child: Column(
+      body: Container(
+          decoration: BoxDecoration(
+              image: DecorationImage(
+                  fit: BoxFit.cover,
+                  colorFilter: ColorFilter.mode(
+                      Colors.black.withOpacity(0.2), BlendMode.dstATop),
+                  image: AssetImage('assets/images/background.jpg'))),
+          padding: EdgeInsets.all(10.0),
+          child: Center(
+            child: SingleChildScrollView(
+                child: Column(
               children: <Widget>[
                 TextField(
                   decoration: InputDecoration(
-                      labelText: 'Eamil', icon: Icon(Icons.email)),
+                      labelText: 'Eamil',
+                      icon: Icon(Icons.email),
+                      filled: true,
+                      fillColor: Colors.white),
                   keyboardType: TextInputType.emailAddress,
                   onChanged: (String value) {
                     setState(() {
@@ -36,9 +43,13 @@ class _AuthPageState extends State<AuthPage> {
                     });
                   },
                 ),
+                SizedBox(height: 10.0,),
                 TextField(
                   decoration: InputDecoration(
-                      labelText: 'Password', icon: Icon(Icons.lock)),
+                      labelText: 'Password',
+                      icon: Icon(Icons.lock),
+                      filled: true,
+                      fillColor: Colors.white),
                   obscureText: true,
                   onChanged: (String value) {
                     setState(() {
@@ -53,24 +64,23 @@ class _AuthPageState extends State<AuthPage> {
                       _acceptTerms = value;
                     });
                   },
-                  title:
-                      Text('      Accept Terms'),
+                  title: Text('      Accept Terms'),
                 ),
                 SizedBox(
                   height: 10.0,
                 ),
-                RaisedButton(
-                    color: Theme.of(context).accentColor,
-                    textColor: Colors.white,
-                    onPressed: () {
-                      Navigator.pushReplacementNamed(context, '/');
-                    },
-                    child: Text('Login'))
+                Container(
+                    padding: EdgeInsets.only(left: 140.0, right: 140.0),
+                    child: RaisedButton(
+                        color: Theme.of(context).accentColor,
+                        textColor: Colors.white,
+                        onPressed: () {
+                          Navigator.pushReplacementNamed(context, '/');
+                        },
+                        child: Text('Login'))),
               ],
-            ),
-          )
-        ],
-      ),
+            )),
+          )),
     );
   }
 }

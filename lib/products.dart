@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import './widgets/product/price_tag.dart';
 
 class Products extends StatelessWidget {
   final List<Map<String, dynamic>> products;
@@ -17,30 +18,34 @@ class Products extends StatelessWidget {
               child: Row(
                 mainAxisAlignment: MainAxisAlignment.center,
                 children: <Widget>[
-                  Expanded(
+                  Flexible(
+                      fit: FlexFit.loose, //default value
+                      flex: 4, //default value
                       child: Text(
-                    products[index]['title'],
-                    style: TextStyle(
-                      fontSize: 26.0,
-                      fontWeight: FontWeight.bold,
-                      fontFamily: 'Oswald',
-                    ),
-                  )),
+                        products[index]['title'],
+                        style: TextStyle(
+                          fontSize: 26.0,
+                          fontWeight: FontWeight.bold,
+                          fontFamily: 'Oswald',
+                        ),
+                      )),
                   // SizedBox(
                   //   width: 0.0,
                   // ),
-                  Expanded(
-                      child: Container(
-                    padding:
-                        EdgeInsets.symmetric(horizontal: 6.0, vertical: 2.5),
-                    decoration: BoxDecoration(
-                        color: Theme.of(context).accentColor,
-                        borderRadius: BorderRadius.circular(20.0)),
-                    child: Text(
-                      '\$ ' + products[index]['price'].toString(),
-                      style: TextStyle(color: Colors.white),
-                    ),
-                  )),
+                  PriceTag(price:products[index]['price'].toString()),
+                  // Expanded(
+                  //     flex: 2,
+                  //     child: Container(
+                  //       padding: EdgeInsets.symmetric(
+                  //           horizontal: 6.0, vertical: 2.5),
+                  //       decoration: BoxDecoration(
+                  //           color: Theme.of(context).accentColor,
+                  //           borderRadius: BorderRadius.circular(20.0)),
+                  //       child: Text(
+                  //         '\$ ' + products[index]['price'].toString(),
+                  //         style: TextStyle(color: Colors.white),
+                  //       ),
+                  //     )),
                 ],
               )),
           // SizedBox(
@@ -61,8 +66,9 @@ class Products extends StatelessWidget {
           ButtonBar(
             alignment: MainAxisAlignment.center,
             children: <Widget>[
-              FlatButton(
-                child: Text('Details'),
+              IconButton(
+                icon: Icon(Icons.info),
+                iconSize: 40.0,
                 onPressed: () => Navigator.pushNamed<bool>(
                         context, 'product/' + index.toString())
                     .then((bool value) {

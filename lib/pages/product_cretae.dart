@@ -16,8 +16,8 @@ class _ProductCreatePageState extends State<ProductCreatePage> {
   double _priceValue = 0.0;
   @override
   Widget build(BuildContext context) {
-    return Container(
-      margin: EdgeInsets.all(20.0),
+    return SingleChildScrollView(
+      // margin: EdgeInsets.all(20.0),
       child: Column(
         children: <Widget>[
           TextField(

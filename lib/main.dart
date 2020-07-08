@@ -3,10 +3,10 @@ import 'package:first_app/pages/products.dart';
 import 'package:first_app/pages/product.dart';
 import 'package:first_app/pages/auth.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter/rendering.dart';
+// import 'package:flutter/rendering.dart';
 
 void main() {
-  debugPaintSizeEnabled = true;
+  // debugPaintSizeEnabled = true;
   // debugPaintBaselinesEnabled=true;
   runApp(MyApp());
 }
